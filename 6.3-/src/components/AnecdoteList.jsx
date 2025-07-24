@@ -1,10 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { useRef } from 'react'
 
 const AnecdoteList = () => {
-    const anecdotes = useSelector(state => state)
+    const anecdotes = useSelector(state => state.anecdotes)
+    const filter = useSelector(state => state.filter)
     const dispatch = useDispatch()
-    const inputRef = useRef()
 
     const voteCollector = (id) => {
         return {
@@ -17,9 +16,14 @@ const AnecdoteList = () => {
         dispatch(voteCollector(id))
     }
 
+    const filteredAnecdotes = filter
+        ? anecdotes.filter(anecdote => 
+            anecdote.content.toLowerCase().includes(filter.toLowerCase()))
+            : anecdotes
+
     return (
         <div>
-            {anecdotes.map(anecdote =>
+            {filteredAnecdotes.map(anecdote =>
                 <div key={anecdote.id}>
                 <div>
                     {anecdote.content}
