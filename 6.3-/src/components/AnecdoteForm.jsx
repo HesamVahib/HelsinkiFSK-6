@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { useDispatch } from 'react-redux'
-import { createAnecdote } from '../reducers/anecdoteReducer' 
+import { createNewAnecdote } from '../reducers/anecdoteReducer' 
 
 const AnecdoteForm = () => {
 
@@ -13,8 +13,7 @@ const AnecdoteForm = () => {
         if (formContent.trim() === '')
             return
         inputRef.current.value = ''
-        console.log('creating', formContent)
-        dispatch(createAnecdote({ content: formContent }))
+        dispatch(createNewAnecdote(formContent))
     }
 
     return (
