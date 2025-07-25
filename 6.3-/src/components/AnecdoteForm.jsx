@@ -1,24 +1,20 @@
 import { useRef } from 'react'
 import { useDispatch } from 'react-redux'
+import { createAnecdote } from '../reducers/anecdoteReducer' 
 
 const AnecdoteForm = () => {
 
     const inputRef = useRef()
     const dispatch = useDispatch()
 
-    const createAnecdote = (content) => {
-        return {
-        type: 'CREATE',
-        data: { content }
-        }
-    }
-
     const handleCreate = (event) => {
         event.preventDefault()
         const formContent = inputRef.current.value
-        if (formContent.trim() === '') return
+        if (formContent.trim() === '')
+            return
         inputRef.current.value = ''
-        dispatch(createAnecdote(formContent))
+        console.log('creating', formContent)
+        dispatch(createAnecdote({ content: formContent }))
     }
 
     return (

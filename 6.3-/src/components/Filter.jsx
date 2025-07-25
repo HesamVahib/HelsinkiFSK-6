@@ -1,5 +1,7 @@
 import { useRef } from "react"
 import { useDispatch } from "react-redux"
+import { setFilter, clearFilter } from "../reducers/filterReducer"
+
 
 const Filter = () => {
   const inputRef = useRef()
@@ -8,16 +10,9 @@ const Filter = () => {
   const handleChange = () => {
     const filterValue = inputRef.current.value
     if (filterValue) {
-      const action = {
-        type: "SET_FILTER",
-        data: filterValue
-      }
-      dispatch(action)
+      dispatch(setFilter(filterValue))
     } else {
-      const action = {
-        type: "CLEAR_FILTER"
-      }
-      dispatch(action)
+      dispatch(clearFilter())
     }
   }
 
