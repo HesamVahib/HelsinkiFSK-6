@@ -1,8 +1,7 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { NotificationContext } from '../contexts/NotificationContext'
 import { voteAnecdote } from '../services/requests'
-
 
 
 const ShowAnecdotes = () => {
@@ -26,7 +25,7 @@ const ShowAnecdotes = () => {
     mutation.mutate(anecdote)
     dispatchNotification({
       type: 'SHOW',
-      message: `You voted for '${anecdote.content}'`
+      message: `anecdote '${anecdote.content}' voted`
     })
   }
 
